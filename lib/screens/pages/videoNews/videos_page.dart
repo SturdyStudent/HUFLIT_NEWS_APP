@@ -3,7 +3,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:news_app/config/themes/app_colors.dart';
 import 'package:news_app/config/themes/app_text_style.dart';
-import 'package:news_app/widgets/stateful/video_category_tab.dart';
+import 'package:news_app/widgets/headerpage/video_category_tab.dart';
 
 class VideoPage extends StatelessWidget {
   const VideoPage({super.key});
