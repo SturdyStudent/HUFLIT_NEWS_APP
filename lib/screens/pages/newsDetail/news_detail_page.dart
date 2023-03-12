@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../models/article.dart';
-import '../../../widgets/stateless/custom_image.dart';
+import '../../../widgets/thumbnail/custom_image.dart';
 import 'bloc/detail_bloc.dart';
 import 'bloc/detail_state.dart';
 
