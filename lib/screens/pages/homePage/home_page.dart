@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news_app/widgets/headerpage/custom_image.dart';
+import 'package:news_app/widgets/thumbnail/custom_image.dart';
 
 import '../../../models/article.dart';
 import '../newsDetail/bloc/bloc.dart';
