@@ -4,8 +4,8 @@ import 'package:news_app/config/themes/app_colors.dart';
 import 'package:news_app/screens/pages/homePage/home_page.dart';
 import 'package:news_app/screens/pages/videoNews/videos_page.dart';
 import 'package:news_app/widgets/drawer_category_list.dart';
-import 'package:news_app/widgets/stateful/header_drawer.dart';
-import 'package:news_app/widgets/stateful/header.dart';
+import 'package:news_app/widgets/headerpage/header_drawer.dart';
+import 'package:news_app/widgets/headerpage/header.dart';
 
 import 'pages/savedPage/saved_page.dart';
 
