@@ -9,7 +9,6 @@ class NavigationBloc extends Bloc<NavigationEvent, NavigationState> {
     on<Navigate>((event, emit) async* {
       // ignore: unnecessary_type_check
       if (event is Navigate) {
-        print(event.pageIndex);
         yield Opened(pageIndex: event.pageIndex ?? 0);
       }
     });

@@ -1,6 +1,7 @@
 // ignore: file_names
 import 'package:flutter/material.dart';
 import 'package:news_app/config/themes/app_colors.dart';
+import 'package:news_app/screens/explore_screen.dart';
 import 'package:news_app/screens/pages/homePage/home_page.dart';
 import 'package:news_app/screens/pages/videoNews/videos_page.dart';
 import 'package:news_app/widgets/drawer_category_list.dart';
@@ -22,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final tabs = [
     const HomePage(),
-    const Center(child: Text("explore")),
+    const ExploreScreen(),
     const VideoPage(),
     const SavedPage()
   ];

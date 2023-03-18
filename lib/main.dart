@@ -6,6 +6,8 @@ import 'package:news_app/screens/pages/homePage/bloc/bloc.dart';
 import 'package:news_app/screens/pages/newsDetail/bloc/bloc.dart';
 import 'package:news_app/config/routes/bloc/bloc.dart';
 
+import 'screens/pages/userAuthPage/bloc/bloc.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -21,6 +23,7 @@ class MyApp extends StatelessWidget {
     // ignore: prefer_const_constructors
     return MultiBlocProvider(
         providers: [
+          BlocProvider<AuthBloc>(create: (context) => AuthBloc()),
           BlocProvider<NewsBloc>(
               create: (context) => NewsBloc(repository: Repository())
                 ..add(const Fetch(type: 'General'))),
