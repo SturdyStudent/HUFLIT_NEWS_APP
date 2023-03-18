@@ -13,7 +13,6 @@ class DetailBloc extends Bloc<DetailEvent, DetailState> {
     // ignore: void_checks
     on<SelectNewsForDetail>((event, emit) async {
       try {
-        print('có bấm load');
         emit(LoadedArticle(selectedArticle: event.article));
       } catch (err) {
         emit(FailureArticle());
