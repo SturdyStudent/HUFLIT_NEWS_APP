@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:news_app/config/themes/app_text_style.dart';
 import 'package:news_app/widgets/thumbnail/custom_image.dart';
 
 import '../../../models/article.dart';
@@ -11,6 +14,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // TODO: implement build
     return Scaffold(
       body: SafeArea(
         child: BlocBuilder<NewsBloc, NewsState>(
@@ -46,7 +50,29 @@ Widget _body(
   return CustomScrollView(
     slivers: <Widget>[
       SliverToBoxAdapter(
-        child: _headerNews(list?.first),
+        child: Container(
+          padding: const EdgeInsets.only(
+            top: 10,
+            left: 30,
+            bottom: 10,
+            right: 30,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text("Tin tức Việt Nam", style: AppTextStyle.h0.copyWith()),
+              const SizedBox(
+                height: 5,
+              ),
+              const Text("Tin tức nóng nhất được cập nhật mỗi ngày"),
+              _headerNews(list?.first),
+              const SizedBox(
+                height: 27,
+              ),
+              _gridNews(),
+            ],
+          ),
+        ),
       ),
       // SliverList(
       //     delegate: SliverChildBuilderDelegate[]
@@ -57,6 +83,85 @@ Widget _body(
       // childCount: list.length))
     ],
   );
+}
+
+class _gridNews extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return GridView.count(
+        crossAxisCount: 2,
+        crossAxisSpacing: 10.0,
+        mainAxisSpacing: 1.0,
+        shrinkWrap: true,
+        children: <Widget>[
+          _eachOfNews(),
+          _eachOfNews(),
+          _eachOfNews(),
+          _eachOfNews(),
+          _eachOfNews(),
+          _eachOfNews(),
+        ]
+        //children: List.generate(
+        //   20,
+        //   (index) {
+        //     return Padding(
+        //        padding: const EdgeInsets.all(10.0),
+        //       child: Container(
+        //         decoration: BoxDecoration(
+        //           image: DecorationImage(
+        //             image: AssetImage('images/profile.jpg'),
+        //             fit: BoxFit.cover,
+        //           ),
+        //           borderRadius: BorderRadius.all(
+        //             Radius.circular(20.0),
+        //           ),
+        //         ),
+        //       ),
+        //     );
+        //   },
+        // ),
+        );
+  }
+}
+
+class _eachOfNews extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Stack(alignment: Alignment.topRight, children: <Widget>[
+          ClipRRect(
+            borderRadius: BorderRadius.circular(20.0),
+            child: Image.asset(
+              'images/profile.jpg',
+              fit: BoxFit.cover,
+              height: 100,
+              width: 150,
+            ),
+          ),
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(100),
+              color: Colors.white,
+            ),
+            child: const Icon(
+              Icons.bookmark_add_outlined,
+              // Icons.bookmark_added_outlined,
+              color: Colors.red,
+              size: 30,
+            ),
+          ),
+        ]),
+        const Text(
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit,",
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+          style: TextStyle(fontWeight: FontWeight.bold),
+        )
+      ],
+    );
+  }
 }
 
 Widget _headerNews(Article? article) {
@@ -82,8 +187,9 @@ Widget _headerNews(Article? article) {
               Container(
                 padding: const EdgeInsets.only(
                     left: 20, right: 10, bottom: 20, top: 20),
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5.0),
+                  gradient: const LinearGradient(
                     begin: Alignment.bottomCenter,
                     end: Alignment.topCenter,
                     colors: [Colors.black, Colors.transparent],
@@ -94,9 +200,12 @@ Widget _headerNews(Article? article) {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(article == null ? '' : article.title.toString(),
-                        style: TextStyle(fontSize: 20.0, color: Colors.white)),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                            fontSize: 20.0, color: Colors.white)),
                     Text(article == null ? '' : article.getTime().toString(),
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontStyle: FontStyle.italic, color: Colors.white))
                   ],
                 ),
