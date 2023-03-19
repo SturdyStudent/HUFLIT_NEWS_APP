@@ -53,6 +53,8 @@ class _SelectTimeState extends State<SelectTime> {
               child: Stack(children: [
                 Center(
                   child: SizedBox(
+                    width: 250,
+                    height: 250,
                     child: FittedBox(
                       fit: BoxFit.cover,
                       child: Image(
