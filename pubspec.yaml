@@ -40,9 +40,10 @@ dependencies:
   intl: ^0.18.0
   http: ^0.13.5
   flutter_bloc: ^8.1.2
+  swipe_deck: ^1.1.0
   equatable: ^2.0.5
   cached_network_image: ^3.2.3
-dev_dependencies:
+  dev_dependencies:
   flutter_test:
     sdk: flutter
 
