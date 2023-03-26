@@ -56,7 +56,6 @@ Widget _body(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 15),
               _headerTopic(context, list.first),
               const SizedBox(
                 height: 27,
@@ -131,7 +130,7 @@ Widget _headerTopic(BuildContext context, Article article) {
     children: <Widget>[
       Container(
         color: AppColors.mainRed,
-        padding: const EdgeInsets.only(top: 5, bottom: 5),
+        padding: const EdgeInsets.only(bottom: 5),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
