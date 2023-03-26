@@ -99,6 +99,7 @@ Widget gridNews(List<Article> articles) {
       },
     ).toList()
       ..removeAt(0),
+
   );
 }
 
@@ -117,6 +118,12 @@ Widget newsItem(Article article) {
               height: 100,
               width: 150,
             ),
+          );
+        }),
+        Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(100),
+            color: Colors.white,
           ),
         ),
         const Positioned(
