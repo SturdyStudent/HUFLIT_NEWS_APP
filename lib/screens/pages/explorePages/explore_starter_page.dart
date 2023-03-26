@@ -47,7 +47,6 @@ class ExploreStarter extends StatelessWidget {
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {
                               // ignore: avoid_print
-                              print('đã đăng kí');
                             }),
                       const TextSpan(
                           text:

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/config/themes/app_text_style.dart';
 import 'package:news_app/models/user.dart';
 import 'package:news_app/screens/pages/userAuthPage/bloc/auth_bloc.dart';
+import 'package:news_app/widgets/auth_widget/signup.dart';
 
 import '../../screens/pages/userAuthPage/bloc/auth_event.dart';
 

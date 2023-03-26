@@ -3,6 +3,7 @@ import 'package:news_app/screens/home_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:news_app/screens/pages/explorePages/welcome_back.dart';
 import 'package:news_app/screens/pages/newsDetail/news_detail_page.dart';
+import 'package:news_app/screens/pages/topicPage/topic_page.dart';
 import 'package:news_app/screens/splash_screen.dart';
 
 Route onGenerate(RouteSettings settings) {
@@ -25,6 +26,8 @@ Widget getRoute(String name) {
       return const Text('Video page');
     case '/detail':
       return const NewsDetailPage();
+    case '/topic':
+      return const TopicPage();
     default:
       return ErrorWidget('Không tìm thấy đường dẫn cho $name');
   }

@@ -1,18 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/config/themes/app_text_style.dart';
 
-class SignUp extends StatefulWidget {
-  const SignUp({Key? key}) : super(key: key);
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({Key? key}) : super(key: key);
 
   @override
-  State<SignUp> createState() => _SignUpState();
+  State<SignUpPage> createState() => _SignUpState();
+
+  static Future openSignupForm(BuildContext context) {
+    return showDialog(
+        barrierColor: Colors.white.withOpacity(0),
+        context: context,
+        builder: (context) => AlertDialog(
+              content: const SignUpPage(),
+              alignment: Alignment.center,
+              actions: [],
+            ));
+  }
 }
 
-class _SignUpState extends State<SignUp> {
+class _SignUpState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.only(top: 100, left: 30, right: 30),
+    double height = MediaQuery.of(context).size.height;
+
+    return Padding(
+      padding: const EdgeInsets.only(top: 50),
+      child: ConstrainedBox(
+        constraints: BoxConstraints(maxHeight: height * 0.6),
         child: Column(
           children: [
             const Center(
@@ -48,42 +63,56 @@ class _SignUpState extends State<SignUp> {
             ),
 
             const SizedBox(height: 20), // Add some vertical space
-            const Text(
-              'Mật khẩu cần phải chứa...',
-              textAlign: TextAlign.left,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
-                color: Color(0xFF040404), // Fix color code
+            const SizedBox(
+              width: double.infinity,
+              child: Text(
+                'Mật khẩu cần phải chứa...',
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                  color: Color(0xFF040404), // Fix color code
+                ),
               ),
             ),
-            const SizedBox(height: 20), // Add some vertical space
-
-            const Text(
-              'Ít nhất 1 chữ cái',
-              textAlign: TextAlign.left,
-              style: TextStyle(
-                fontSize: 16,
-                color: Color(0xFF040404), // Fix color code
+            const SizedBox(
+              width: double.infinity,
+              child: Text(
+                '8 kí tự trở lên',
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Color(0xFF040404), // Fix color code
+                ),
               ),
             ),
-            const SizedBox(height: 10), // Add some vertical space
-            const Text(
-              'Ít nhất 1 chữ cái hay 1 kí tự',
-              textAlign: TextAlign.left,
-              style: TextStyle(
-                fontSize: 16,
-                color: Color(0xFF040404), // Fix color code
+            const SizedBox(
+              width: double.infinity,
+              child: Text(
+                'Ít nhất 1 chữ cái',
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Color(0xFF040404), // Fix color code
+                ),
               ),
             ),
-            const SizedBox(height: 10), // Add some vertical space
+            const SizedBox(
+              width: double.infinity,
+              child: Text(
+                'Ít nhất 1 chữ cái hay 1 kí tự',
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Color(0xFF040404), // Fix color code
+                ),
+              ),
+            ),
 
             Padding(
-              padding: const EdgeInsets.only(top: 10),
+              padding: const EdgeInsets.only(top: 20),
               child: ElevatedButton(
-                  onPressed: () {
-                    // Function to execute when button is pressed
-                  },
+                  onPressed: () {},
                   style: ButtonStyle(
                     backgroundColor:
                         MaterialStateProperty.all<Color>(Color(0xFFBB0712)),

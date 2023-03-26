@@ -44,124 +44,99 @@ class HomePage extends StatelessWidget {
 
 Widget _body(
   BuildContext context,
-  List<Article>? list, {
+  List<Article> list, {
   required String type,
 }) {
   return CustomScrollView(
     slivers: <Widget>[
       SliverToBoxAdapter(
-        child: Container(
-          padding: const EdgeInsets.only(
-            top: 10,
-            left: 30,
-            bottom: 10,
-            right: 30,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text("Tin tức Việt Nam", style: AppTextStyle.h0.copyWith()),
-              const SizedBox(
-                height: 5,
-              ),
-              const Text("Tin tức nóng nhất được cập nhật mỗi ngày"),
-              _headerNews(list?.first),
-              const SizedBox(
-                height: 27,
-              ),
-              _gridNews(),
-            ],
+        child: SingleChildScrollView(
+          child: Container(
+            padding: const EdgeInsets.only(
+              top: 10,
+              left: 30,
+              bottom: 10,
+              right: 30,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("Tin tức Việt Nam", style: AppTextStyle.h0.copyWith()),
+                const SizedBox(
+                  height: 5,
+                ),
+                Text(
+                  "Tin tức nóng nhất được cập nhật mỗi ngày",
+                  style: AppTextStyle.h5.copyWith(color: Colors.black),
+                ),
+                const SizedBox(height: 15),
+                _headerNews(list?.first),
+                const SizedBox(
+                  height: 27,
+                ),
+                gridNews(
+                  list,
+                ),
+              ],
+            ),
           ),
         ),
       ),
-      // SliverList(
-      //     delegate: SliverChildBuilderDelegate[]
-      // (context, index) => NewsCard(
-      //       artical: list[index],
-      //       type: type.toUpperCase(),
-      //     ),
-      // childCount: list.length))
     ],
   );
 }
 
-class _gridNews extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return GridView.count(
-        crossAxisCount: 2,
-        crossAxisSpacing: 10.0,
-        mainAxisSpacing: 1.0,
-        shrinkWrap: true,
-        children: <Widget>[
-          _eachOfNews(),
-          _eachOfNews(),
-          _eachOfNews(),
-          _eachOfNews(),
-          _eachOfNews(),
-          _eachOfNews(),
-        ]
-        //children: List.generate(
-        //   20,
-        //   (index) {
-        //     return Padding(
-        //        padding: const EdgeInsets.all(10.0),
-        //       child: Container(
-        //         decoration: BoxDecoration(
-        //           image: DecorationImage(
-        //             image: AssetImage('images/profile.jpg'),
-        //             fit: BoxFit.cover,
-        //           ),
-        //           borderRadius: BorderRadius.all(
-        //             Radius.circular(20.0),
-        //           ),
-        //         ),
-        //       ),
-        //     );
-        //   },
-        // ),
-        );
-  }
+Widget gridNews(List<Article> articles) {
+  return GridView.count(
+    physics: const ScrollPhysics(),
+    crossAxisCount: 2,
+    crossAxisSpacing: 10.0,
+    mainAxisSpacing: 1.0,
+    shrinkWrap: true,
+    children: articles.map(
+      (article) {
+        return newsItem(article);
+      },
+    ).toList()
+      ..removeAt(0),
+  );
 }
 
-class _eachOfNews extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Stack(alignment: Alignment.topRight, children: <Widget>[
-          ClipRRect(
+Widget newsItem(Article article) {
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Stack(alignment: Alignment.topRight, children: <Widget>[
+        Container(
+          padding: const EdgeInsets.only(top: 5, right: 5),
+          child: ClipRRect(
             borderRadius: BorderRadius.circular(20.0),
-            child: Image.asset(
-              'images/profile.jpg',
+            child: Image.network(
+              article.urlToImage ?? '',
               fit: BoxFit.cover,
               height: 100,
               width: 150,
             ),
           ),
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(100),
-              color: Colors.white,
-            ),
-            child: const Icon(
-              Icons.bookmark_add_outlined,
-              // Icons.bookmark_added_outlined,
-              color: Colors.red,
-              size: 30,
-            ),
-          ),
-        ]),
-        const Text(
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit,",
-          maxLines: 2,
-          overflow: TextOverflow.ellipsis,
-          style: TextStyle(fontWeight: FontWeight.bold),
-        )
-      ],
-    );
-  }
+        ),
+        const Positioned(
+            top: -5,
+            right: -7,
+            child: Image(
+              width: 40,
+              height: 45,
+              image: AssetImage('assets/images/icons/bookmark_plus.png'),
+              fit: BoxFit.fill,
+            )),
+      ]),
+      Text(
+        article.title ?? '',
+        maxLines: 2,
+        overflow: TextOverflow.ellipsis,
+        style: const TextStyle(fontWeight: FontWeight.bold),
+      )
+    ],
+  );
 }
 
 Widget _headerNews(Article? article) {
@@ -178,11 +153,14 @@ Widget _headerNews(Article? article) {
           child: Stack(
             alignment: Alignment.bottomCenter,
             children: <Widget>[
-              Hero(
-                tag: 'headerImage',
-                child: article?.urlToImage == null
-                    ? Container()
-                    : customImage(article?.urlToImage),
+              Padding(
+                padding: const EdgeInsets.only(right: 5.0),
+                child: Hero(
+                  tag: 'headerImage',
+                  child: article?.urlToImage == null
+                      ? Container()
+                      : customImage(article?.urlToImage),
+                ),
               ),
               Container(
                 padding: const EdgeInsets.only(
@@ -193,7 +171,6 @@ Widget _headerNews(Article? article) {
                     begin: Alignment.bottomCenter,
                     end: Alignment.topCenter,
                     colors: [Colors.black, Colors.transparent],
-                    // stops: [.1, .9],
                   ),
                 ),
                 child: Column(
@@ -209,7 +186,16 @@ Widget _headerNews(Article? article) {
                             fontStyle: FontStyle.italic, color: Colors.white))
                   ],
                 ),
-              )
+              ),
+              const Positioned(
+                  top: 0,
+                  right: -7,
+                  child: Image(
+                    width: 50,
+                    height: 55,
+                    image: AssetImage('assets/images/icons/bookmark_plus.png'),
+                    fit: BoxFit.fill,
+                  )),
             ],
           ));
     },

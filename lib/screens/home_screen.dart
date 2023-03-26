@@ -69,7 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: AppColors.darkColor,
         child: SingleChildScrollView(
           child: Column(
-            children: [const HeaderDrawer(), DrawerCategoryList()],
+            children: [const HeaderDrawer(), DrawerCategoryList(context)],
           ),
         ),
       ),
