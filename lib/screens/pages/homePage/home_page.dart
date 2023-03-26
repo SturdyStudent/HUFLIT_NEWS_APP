@@ -19,11 +19,8 @@ class HomePage extends StatelessWidget {
       body: SafeArea(
         child: BlocBuilder<NewsBloc, NewsState>(
           builder: (context, state) {
-            if (state == null) {
-              return Center(child: Text('Null block'));
-            }
             if (state is Failure) {
-              return Center(child: Text('Something went wrong'));
+              return const Center(child: Text('Something went wrong'));
             }
             if (state is Loaded) {
               // ignore: unnecessary_null_comparison
@@ -99,7 +96,6 @@ Widget gridNews(List<Article> articles) {
       },
     ).toList()
       ..removeAt(0),
-
   );
 }
 
@@ -109,17 +105,16 @@ Widget newsItem(Article article) {
     children: [
       Stack(alignment: Alignment.topRight, children: <Widget>[
         Container(
-          padding: const EdgeInsets.only(top: 5, right: 5),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(20.0),
-            child: Image.network(
-              article.urlToImage ?? '',
-              fit: BoxFit.cover,
-              height: 100,
-              width: 150,
-            ),
-          );
-        }),
+            padding: const EdgeInsets.only(top: 5, right: 5),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20.0),
+              child: Image.network(
+                article.urlToImage ?? '',
+                fit: BoxFit.cover,
+                height: 100,
+                width: 150,
+              ),
+            )),
         Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(100),
