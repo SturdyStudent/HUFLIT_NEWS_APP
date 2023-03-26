@@ -3,6 +3,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/config/themes/app_text_style.dart';
+import 'package:news_app/models/article.dart';
 
 import 'bloc/bloc.dart';
 import 'topic_select_page.dart';
@@ -19,10 +20,10 @@ class _SelectTimeState extends State<SelectTime> {
   int imageIndex = 0;
   int textIndex = 0;
   List<String> listImages = [
-    'images/icons/clock_border_15_min.png',
-    'images/icons/clock_border_30_min.png',
-    'images/icons/clock_border_45_min.png',
-    'images/icons/clock_border_60_min.png'
+    'assets/images/icons/clock_border_15_min.png',
+    'assets/images/icons/clock_border_30_min.png',
+    'assets/images/icons/clock_border_45_min.png',
+    'assets/images/icons/clock_border_60_min.png'
   ];
   List<String> listText = ['15 phút', '30 phút', '45 phút', '60 phút'];
 

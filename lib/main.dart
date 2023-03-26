@@ -30,7 +30,8 @@ class MyApp extends StatelessWidget {
           BlocProvider<DetailBloc>(create: (context) => DetailBloc()),
           BlocProvider<NavigationBloc>(create: (context) => NavigationBloc())
         ],
-        child: const MaterialApp(
+        child: MaterialApp(
+            scrollBehavior: const ScrollBehavior().copyWith(scrollbars: false),
             initialRoute: '/',
             onGenerateRoute: onGenerate,
             debugShowCheckedModeBanner: false));

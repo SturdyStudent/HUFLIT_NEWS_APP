@@ -62,9 +62,13 @@ class NewsDetailPage extends StatelessWidget {
     return Stack(
       alignment: Alignment.topCenter,
       children: <Widget>[
+        const Hero(tag: 'headerImage', child: Text('')
+            // (article.urlToImage == null || article.urlToImage!.isEmpty)
+            //     ? Container()
+            //     : customImage(article.urlToImage),
+            ),
         Container(
-          height: kToolbarHeight,
-          color: AppColors.primaryColor,
+          padding: const EdgeInsets.only(left: 0, right: 10, bottom: 20),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[

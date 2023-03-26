@@ -11,7 +11,7 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
     return Material(
         color: AppColors.primaryColor,
         child: SafeArea(
-            child: Container(
+            child: SizedBox(
           height: kToolbarHeight,
           child: Row(
             children: [

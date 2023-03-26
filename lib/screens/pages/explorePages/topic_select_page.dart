@@ -17,7 +17,7 @@ class TopicSelect extends StatefulWidget {
 
 class _TopicSelectState extends State<TopicSelect> {
   // ignore: constant_identifier_names
-  int pageIndex = 0;
+
 
   @override
   Widget build(BuildContext context) {

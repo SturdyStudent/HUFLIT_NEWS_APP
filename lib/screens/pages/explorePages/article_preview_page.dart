@@ -42,15 +42,6 @@ class ArticlePreview extends StatelessWidget {
                 ),
               ),
               cardSpreadInDegrees: 5, // Change the Spread of Background Cards
-              onSwipeLeft: () {
-                print("USER SWIPED LEFT -> GOING TO NEXT WIDGET");
-              },
-              onSwipeRight: () {
-                print("USER SWIPED RIGHT -> GOING TO PREVIOUS WIDGET");
-              },
-              onChange: (index) {
-                print(IMAGES[index]);
-              },
               widgets: IMAGES
                   .map((e) => GestureDetector(
                         onTap: () {
@@ -59,7 +50,7 @@ class ArticlePreview extends StatelessWidget {
                         child: ClipRRect(
                             borderRadius: borderRadius,
                             child: Image.asset(
-                              "images/icons/$e.jpg",
+                              "assets/images/icons/$e.jpg",
                               fit: BoxFit.cover,
                             )),
                       ))
