@@ -44,7 +44,7 @@ class HomePage extends StatelessWidget {
 
 Widget _body(
   BuildContext context,
-  List<Article>? list, {
+  List<Article> list, {
   required String type,
 }) {
   return CustomScrollView(
@@ -69,99 +69,81 @@ Widget _body(
               const SizedBox(
                 height: 27,
               ),
-              _gridNews(),
+              gridNews(
+                list,
+              ),
             ],
           ),
         ),
       ),
-      // SliverList(
-      //     delegate: SliverChildBuilderDelegate[]
-      // (context, index) => NewsCard(
-      //       artical: list[index],
-      //       type: type.toUpperCase(),
-      //     ),
-      // childCount: list.length))
     ],
   );
 }
 
-class _gridNews extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return GridView.count(
-        crossAxisCount: 2,
-        crossAxisSpacing: 10.0,
-        mainAxisSpacing: 1.0,
-        shrinkWrap: true,
-        children: <Widget>[
-          _eachOfNews(),
-          _eachOfNews(),
-          _eachOfNews(),
-          _eachOfNews(),
-          _eachOfNews(),
-          _eachOfNews(),
-        ]
-        //children: List.generate(
-        //   20,
-        //   (index) {
-        //     return Padding(
-        //        padding: const EdgeInsets.all(10.0),
-        //       child: Container(
-        //         decoration: BoxDecoration(
-        //           image: DecorationImage(
-        //             image: AssetImage('images/profile.jpg'),
-        //             fit: BoxFit.cover,
-        //           ),
-        //           borderRadius: BorderRadius.all(
-        //             Radius.circular(20.0),
-        //           ),
-        //         ),
-        //       ),
-        //     );
-        //   },
-        // ),
-        );
-  }
+Widget gridNews(List<Article> articles) {
+  return Container(
+    child: GridView.count(
+      physics: NeverScrollableScrollPhysics(),
+      crossAxisCount: 2,
+      crossAxisSpacing: 10.0,
+      mainAxisSpacing: 1.0,
+      shrinkWrap: true,
+      children: articles.map(
+        (article) {
+          return newsItem(article);
+        },
+      ).toList()
+        ..removeAt(0),
+    ),
+  );
 }
 
-class _eachOfNews extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Stack(alignment: Alignment.topRight, children: <Widget>[
-          ClipRRect(
-            borderRadius: BorderRadius.circular(20.0),
-            child: Image.asset(
-              'images/profile.jpg',
-              fit: BoxFit.cover,
-              height: 100,
-              width: 150,
+Widget newsItem(Article article) {
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Stack(alignment: Alignment.topRight, children: <Widget>[
+        Builder(builder: (context) {
+          return InkWell(
+            onTap: () {
+              final detailBloc = BlocProvider.of<DetailBloc>(context);
+              if (article != null) {
+                detailBloc.add(SelectNewsForDetail(article: article));
+              }
+              Navigator.pushNamed(context, '/detail');
+            },
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20.0),
+              child: Image.network(
+                article.urlToImage ?? '',
+                fit: BoxFit.cover,
+                height: 100,
+                width: 150,
+              ),
             ),
+          );
+        }),
+        Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(100),
+            color: Colors.white,
           ),
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(100),
-              color: Colors.white,
-            ),
-            child: const Icon(
-              Icons.bookmark_add_outlined,
-              // Icons.bookmark_added_outlined,
-              color: Colors.red,
-              size: 30,
-            ),
+          child: const Icon(
+            Icons.bookmark_add_outlined,
+            // Icons.bookmark_added_outlined,
+            color: Colors.red,
+            size: 30,
           ),
-        ]),
-        const Text(
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit,",
-          maxLines: 2,
-          overflow: TextOverflow.ellipsis,
-          style: TextStyle(fontWeight: FontWeight.bold),
-        )
-      ],
-    );
-  }
+        ),
+      ]),
+      Text(
+        article.title ?? '',
+        maxLines: 2,
+        overflow: TextOverflow.ellipsis,
+        style: TextStyle(fontWeight: FontWeight.bold),
+      )
+    ],
+  );
 }
 
 Widget _headerNews(Article? article) {
