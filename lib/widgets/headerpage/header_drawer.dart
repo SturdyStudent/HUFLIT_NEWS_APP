@@ -6,6 +6,7 @@ import 'package:news_app/screens/pages/userAuthPage/bloc/auth_bloc.dart';
 import 'package:news_app/screens/pages/userAuthPage/bloc/auth_state.dart';
 import 'package:news_app/widgets/auth_widget/login.dart';
 import 'package:news_app/widgets/auth_widget/signup.dart';
+import 'package:news_app/screens/pages/userDetails/user_detail_page.dart';
 
 class HeaderDrawer extends StatefulWidget {
   const HeaderDrawer({super.key});
@@ -72,6 +73,19 @@ class _HeaderDrawerState extends State<HeaderDrawer> {
                           },
                           child: Text(
                             'Đăng kí',
+                            style:
+                                AppTextStyle.h4.copyWith(color: Colors.white),
+                          )),
+                      TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const ProfilePage()),
+                            );
+                          },
+                          child: Text(
+                            'Profisle',
                             style:
                                 AppTextStyle.h4.copyWith(color: Colors.white),
                           ))

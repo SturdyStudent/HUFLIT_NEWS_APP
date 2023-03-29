@@ -11,8 +11,8 @@ class SignUpPage extends StatefulWidget {
     return showDialog(
         barrierColor: Colors.white.withOpacity(0),
         context: context,
-        builder: (context) => AlertDialog(
-              content: const SignUpPage(),
+        builder: (context) => const AlertDialog(
+              content: SignUpPage(),
               alignment: Alignment.center,
               actions: [],
             ));

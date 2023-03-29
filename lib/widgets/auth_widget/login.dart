@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/config/themes/app_text_style.dart';
 import 'package:news_app/models/user.dart';
 import 'package:news_app/screens/pages/userAuthPage/bloc/auth_bloc.dart';
+import 'package:news_app/widgets/auth_widget/forgot_password.dart';
 import 'package:news_app/widgets/auth_widget/signup.dart';
 
 import '../../screens/pages/userAuthPage/bloc/auth_event.dart';
@@ -72,10 +73,30 @@ class LoginPage extends StatefulWidget {
                   alignment: Alignment.center,
                   child: TextButton(
                     onPressed: () {
-                      // Action to perform when button is pressed
+                      SignUpPage.openSignupForm(context);
                     },
                     child: Text(
                       'Đăng ký ngay',
+                      style: AppTextStyle.h4.copyWith(
+                          color: Color(0xFFBB0712),
+                          decoration: TextDecoration.underline,
+                          decorationColor: Color(0xFFBB0712) // Fix color code
+                          ),
+                    ),
+                  ),
+                ),
+                Container(
+                  alignment: Alignment.center,
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const ForgotPassword()),
+                      );
+                    },
+                    child: Text(
+                      'Quên mật khẩu',
                       style: AppTextStyle.h4.copyWith(
                           color: Colors.blue,
                           decoration: TextDecoration.underline,
