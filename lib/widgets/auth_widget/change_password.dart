@@ -11,6 +11,17 @@ class _ChangePasswordState extends State<ChangePassword> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: const Color(0xFFBB0712),
+        title: const Text('Change password'),
+        elevation: 0,
+        leading: IconButton(
+            color: Colors.white,
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(Icons.arrow_back_ios_rounded)),
+      ),
       body: Padding(
         padding:
             const EdgeInsets.only(top: 100, left: 30, right: 30, bottom: 20),
