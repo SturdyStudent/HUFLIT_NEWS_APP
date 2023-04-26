@@ -20,7 +20,7 @@ class HomePage extends StatelessWidget {
         child: BlocBuilder<NewsBloc, NewsState>(
           builder: (context, state) {
             if (state is Failure) {
-              return const Center(child: Text('Something went wrong'));
+              return const Center(child: Text('Lỗi mạng'));
             }
             if (state is Loaded) {
               // ignore: unnecessary_null_comparison

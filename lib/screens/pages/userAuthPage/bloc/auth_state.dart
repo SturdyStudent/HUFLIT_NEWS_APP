@@ -8,10 +8,12 @@ abstract class AuthState extends Equatable {
   List<Object> get props => [];
 }
 
+class RegisteringIn extends AuthState {}
+
 class LoggingIn extends AuthState {} //định nghĩa state Loading, loaded,
 
 class LogInSuccess extends AuthState {
-  final User user;
+  final UserObj user;
 
   const LogInSuccess({required this.user});
 
@@ -19,4 +21,10 @@ class LogInSuccess extends AuthState {
   String toString() => 'Login user { items: ${user.userName} }';
 }
 
+class LogOut extends AuthState {}
+
 class LogInFail extends AuthState {}
+
+class RegisterSuccess extends AuthState {}
+
+class RegisterFail extends AuthState {}
