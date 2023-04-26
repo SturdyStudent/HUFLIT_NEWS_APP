@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
-import 'package:news_app/widgets/stateful/custom_search.dart';
+import 'package:news_app/widgets/headerpage/custom_search.dart';
 import '../../config/themes/app_colors.dart';
 
 class Header extends StatelessWidget implements PreferredSizeWidget {
@@ -11,7 +11,7 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
     return Material(
         color: AppColors.primaryColor,
         child: SafeArea(
-            child: Container(
+            child: SizedBox(
           height: kToolbarHeight,
           child: Row(
             children: [

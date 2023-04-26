@@ -20,7 +20,7 @@ class _SplashState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: AppColors.mainRed,
+      color: AppColors.primaryColor,
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -75,7 +75,7 @@ class _SplashState extends State<SplashScreen> {
   }
 
   void _navigateToHome() async {
-    await Future.delayed(const Duration(milliseconds: 0), () {
+    await Future.delayed(const Duration(milliseconds: 2000), () {
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => const HomeScreen()));
     });

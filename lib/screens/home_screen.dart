@@ -1,11 +1,12 @@
 // ignore: file_names
 import 'package:flutter/material.dart';
 import 'package:news_app/config/themes/app_colors.dart';
+import 'package:news_app/screens/explore_screen.dart';
 import 'package:news_app/screens/pages/homePage/home_page.dart';
 import 'package:news_app/screens/pages/videoNews/videos_page.dart';
 import 'package:news_app/widgets/drawer_category_list.dart';
-import 'package:news_app/widgets/stateful/header_drawer.dart';
-import 'package:news_app/widgets/stateful/header.dart';
+import 'package:news_app/widgets/headerpage/header_drawer.dart';
+import 'package:news_app/widgets/headerpage/header.dart';
 
 import 'pages/savedPage/saved_page.dart';
 
@@ -22,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final tabs = [
     const HomePage(),
-    const Center(child: Text("explore")),
+    const ExploreScreen(),
     const VideoPage(),
     const SavedPage()
   ];
@@ -68,7 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: AppColors.darkColor,
         child: SingleChildScrollView(
           child: Column(
-            children: [const HeaderDrawer(), DrawerCategoryList()],
+            children: [const HeaderDrawer(), DrawerCategoryList(context)],
           ),
         ),
       ),
