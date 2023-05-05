@@ -12,45 +12,36 @@ class NewsDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          backgroundColor: const Color(0xFFBB0712),
-          title: const Text('Trở lại'),
-          elevation: 0,
-          leading: IconButton(
-              color: Colors.white,
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: Icon(Icons.arrow_back_ios_rounded)),
-        ),
-        body: SafeArea(child: BlocBuilder<DetailBloc, DetailState>(
-          builder: (context, state) {
-            if (state == null) {
-              return const Center(child: Text('Null bloc'));
-            }
-            if (state is FailureArticle) {
-              return const Center(child: Text('Something went wrong'));
-            }
-            if (state is LoadedArticle) {
-              if (state.selectedArticle == null) {
-                return const Text('No content avilable');
-              } else {
-                return _body(
-                  context,
-                  state.selectedArticle,
-                );
-              }
-            } else {
-              return const Center(child: CircularProgressIndicator());
-            }
-          },
-        )));
+    return Scaffold(body: SafeArea(child: BlocBuilder<DetailBloc, DetailState>(
+      builder: (context, state) {
+        if (state == null) {
+          return const Center(child: Text('Null bloc'));
+        }
+        if (state is FailureArticle) {
+          return const Center(child: Text('Something went wrong'));
+        }
+        if (state is LoadedArticle) {
+          if (state.selectedArticle == null) {
+            return const Text('No content avilable');
+          } else {
+            return _body(
+              context,
+              state.selectedArticle,
+            );
+          }
+        } else {
+          return const Center(child: CircularProgressIndicator());
+        }
+      },
+    )));
   }
 
   Widget _body(BuildContext context, Article article) {
     return CustomScrollView(
       slivers: <Widget>[
+        SliverToBoxAdapter(
+          child: _barNews(context, article),
+        ),
         SliverToBoxAdapter(
           child: _headerNews(context, article),
         ),
@@ -67,9 +58,54 @@ class NewsDetailPage extends StatelessWidget {
     );
   }
 
+  Widget _barNews(BuildContext context, Article article) {
+    return Stack(
+      alignment: Alignment.topCenter,
+      children: <Widget>[
+        const Hero(tag: 'headerImage', child: Text('')
+            // (article.urlToImage == null || article.urlToImage!.isEmpty)
+            //     ? Container()
+            //     : customImage(article.urlToImage),
+            ),
+        Container(
+          padding: const EdgeInsets.only(left: 0, right: 10, bottom: 20),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              IconButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                icon: const Icon(
+                  Icons.arrow_back,
+                  color: Colors.white,
+                ),
+              ),
+              const Expanded(child: SizedBox()),
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(
+                  Icons.favorite_border,
+                  color: Colors.white,
+                ),
+              ),
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(
+                  Icons.share,
+                  color: Colors.white,
+                ),
+              )
+            ],
+          ),
+        )
+      ],
+    );
+  }
+
   Widget _headerNews(BuildContext context, Article article) {
     return Padding(
-      padding: const EdgeInsets.only(left: 15, right: 15, top: 15),
+      padding: const EdgeInsets.only(left: 15, right: 15),
       child: Stack(
         alignment: Alignment.bottomCenter,
         children: <Widget>[

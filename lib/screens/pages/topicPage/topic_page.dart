@@ -25,7 +25,7 @@ class TopicPage extends StatelessWidget {
               return Center(child: Text('Null block'));
             }
             if (state is Failure) {
-              return Center(child: Text('Lỗi mạng'));
+              return Center(child: Text('Something went wrong'));
             }
             if (state is Loaded) {
               // ignore: unnecessary_null_comparison
@@ -140,7 +140,7 @@ Widget _headerTopic(BuildContext context, Article article) {
                 Navigator.of(context).pop();
               },
               icon: const Icon(
-                Icons.arrow_back_ios_rounded,
+                Icons.keyboard_backspace,
                 color: Colors.white,
               ),
             ),

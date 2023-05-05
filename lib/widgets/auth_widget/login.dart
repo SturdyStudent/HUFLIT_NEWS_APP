@@ -15,7 +15,7 @@ class LoginPage extends StatefulWidget {
   State<LoginPage> createState() => _LoginState();
 
   static Future openLoginForm(BuildContext context) {
-    UserObj tempUser = UserObj('', '', '', '');
+    User tempUser = User('Jojo', '', '', '');
     return showDialog(
         context: context,
         builder: (context) => AlertDialog(
@@ -24,8 +24,6 @@ class LoginPage extends StatefulWidget {
               actions: [
                 Container(
                   alignment: Alignment.center,
-                  decoration:
-                      BoxDecoration(borderRadius: BorderRadius.circular(20)),
                   child: Padding(
                     padding: const EdgeInsets.only(top: 0),
                     child: ElevatedButton(
@@ -75,14 +73,13 @@ class LoginPage extends StatefulWidget {
                   alignment: Alignment.center,
                   child: TextButton(
                     onPressed: () {
-                      Navigator.pop(context);
                       SignUpPage.openSignupForm(context);
                     },
                     child: Text(
                       'Đăng ký ngay',
                       style: AppTextStyle.h4.copyWith(
                           color: Color(0xFFBB0712),
-                          decoration: TextDecoration.none,
+                          decoration: TextDecoration.underline,
                           decorationColor: Color(0xFFBB0712) // Fix color code
                           ),
                     ),
@@ -90,8 +87,6 @@ class LoginPage extends StatefulWidget {
                 ),
                 Container(
                   alignment: Alignment.center,
-                  decoration:
-                      BoxDecoration(borderRadius: BorderRadius.circular(20)),
                   child: TextButton(
                     onPressed: () {
                       Navigator.push(
@@ -104,7 +99,7 @@ class LoginPage extends StatefulWidget {
                       'Quên mật khẩu',
                       style: AppTextStyle.h4.copyWith(
                           color: Colors.blue,
-                          decoration: TextDecoration.none,
+                          decoration: TextDecoration.underline,
                           decorationColor: Colors.blue // Fix color code
                           ),
                     ),

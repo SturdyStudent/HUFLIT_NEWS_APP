@@ -22,7 +22,7 @@ class _HeaderDrawerState extends State<HeaderDrawer> {
         color: AppColors.primaryColor,
         width: double.infinity,
         height: 180,
-        padding: const EdgeInsets.only(top: 20.0, left: 15.0, right: 15.0),
+        padding: const EdgeInsets.only(top: 20.0, left: 15.0),
         child: BlocBuilder<AuthBloc, AuthState>(
           builder: (context, state) {
             return Column(
@@ -43,39 +43,14 @@ class _HeaderDrawerState extends State<HeaderDrawer> {
                                   : 'assets/images/icons/user.png'))),
                     )),
                 if (state is LogInSuccess) ...[
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          Text("Violet Is Blue",
-                              textAlign: TextAlign.start,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
-                              )),
-                          Text(
-                            "lisaViolet@gmail.com",
-                            style: TextStyle(color: Colors.white, fontSize: 14),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 20,
-                        child: IconButton(
-                            icon: const Icon(
-                              Icons.edit,
-                            ),
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const ProfilePage()),
-                              );
-                            }),
-                      )
-                    ],
+                  const Text("Violet Is Blue",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                      )),
+                  const Text(
+                    "lisaViolet@gmail.com",
+                    style: TextStyle(color: Colors.white, fontSize: 14),
                   )
                 ] else ...[
                   Row(
@@ -94,7 +69,6 @@ class _HeaderDrawerState extends State<HeaderDrawer> {
                           style: AppTextStyle.h4.copyWith(color: Colors.white)),
                       TextButton(
                           onPressed: () {
-                            Navigator.pop(context);
                             SignUpPage.openSignupForm(context);
                           },
                           child: Text(
@@ -102,6 +76,19 @@ class _HeaderDrawerState extends State<HeaderDrawer> {
                             style:
                                 AppTextStyle.h4.copyWith(color: Colors.white),
                           )),
+                      TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const ProfilePage()),
+                            );
+                          },
+                          child: Text(
+                            'Profisle',
+                            style:
+                                AppTextStyle.h4.copyWith(color: Colors.white),
+                          ))
                     ],
                   )
                 ]

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/screens/pages/homePage/home_page.dart';
-import 'package:news_app/screens/pages/userAuthPage/bloc/bloc.dart';
 import 'package:news_app/widgets/auth_widget/change_password.dart';
 import 'package:news_app/config/themes/app_text_style.dart';
 
@@ -16,7 +14,7 @@ class ProfilePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFFBB0712),
-        title: const Text('Thông tin người dùng'),
+        title: const Text('User Profile'),
         elevation: 0,
         leading: IconButton(
             color: Colors.white,
@@ -27,7 +25,7 @@ class ProfilePage extends StatelessWidget {
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(30),
+          padding: const EdgeInsets.only(left: 15.0, right: 15, top: 15),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -44,7 +42,7 @@ class ProfilePage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20),
-              Row(mainAxisAlignment: MainAxisAlignment.center, children: const [
+              Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                 Text('Violet is blue',
                     style:
                         TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
@@ -56,57 +54,61 @@ class ProfilePage extends StatelessWidget {
                   style: TextStyle(color: Colors.grey.shade800),
                 ),
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 60),
               const Divider(
                 thickness: 2,
               ),
               const SizedBox(height: 30),
               Row(
-                children: const [
-                  Icon(Icons.account_circle),
-                  Text('Username: ',
+                children: [
+                  const Icon(Icons.account_circle),
+                  const Text('Username: ',
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                  Text('violet',
+                  const Text('violet',
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.w400)),
                 ],
               ),
               const SizedBox(height: 25),
-              Row(children: const [
-                Icon(Icons.calculate_rounded),
-                Text('Age: ',
+              Row(children: [
+                const Icon(Icons.calculate_rounded),
+                const Text('Age: ',
                     style:
                         TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                 Text('25',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400))
+                    style: const TextStyle(
+                        fontSize: 18, fontWeight: FontWeight.w400))
               ]),
               const SizedBox(height: 25),
-              Row(children: const [
-                Icon(Icons.people_outlined),
-                Text('Gender:',
+              Row(children: [
+                const Icon(Icons.people_outlined),
+                const Text('Gender:',
                     style:
                         TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                 Text('Nữ',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400))
+                    style: const TextStyle(
+                        fontSize: 18, fontWeight: FontWeight.w400))
               ]),
               const SizedBox(height: 25),
-              Row(children: const [
-                Icon(Icons.phone),
-                Text('Phone Number: ',
+              Row(children: [
+                const Icon(Icons.phone),
+                const Text('Phone Number: ',
                     style:
                         TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                 Text('0931213223',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400))
+                    style: const TextStyle(
+                        fontSize: 18, fontWeight: FontWeight.w400))
               ]),
               const SizedBox(height: 25),
-              Row(children: const [
-                Icon(Icons.add_location),
-                Text('Country: ',
+              Row(children: [
+                const Icon(Icons.add_location),
+                const Text('Country: ',
                     style:
                         TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                 Text('Viet Nam',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400))
+                    style: const TextStyle(
+                        fontSize: 18, fontWeight: FontWeight.w400))
               ]),
               const SizedBox(height: 25),
               const Divider(
@@ -122,18 +124,19 @@ class ProfilePage extends StatelessWidget {
                   },
                   child: Text(
                     'Đổi mật khẩu',
-                    style: AppTextStyle.h3.copyWith(color: Color(0xFFBB0712)),
+                    style: AppTextStyle.h4.copyWith(color: Color(0xFFBB0712)),
                   )),
               const SizedBox(height: 10),
               TextButton(
                   onPressed: () {
-                    BlocProvider.of<AuthBloc>(context).add(const LogoutUser());
-                    Navigator.pop(context);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const HomePage()),
+                    );
                   },
                   child: Text(
                     'Đăng xuất',
-                    style: AppTextStyle.h3
-                        .copyWith(color: const Color(0xFFBB0712)),
+                    style: AppTextStyle.h4.copyWith(color: Color(0xFFBB0712)),
                   ))
             ],
           ),

@@ -9,23 +9,10 @@ abstract class AuthEvent extends Equatable {
 }
 
 class Login extends AuthEvent {
-  final UserObj user;
+  final User user;
 
   const Login({required this.user});
 
   @override
   String toString() => 'Login for user ${user.userName} ';
-}
-
-class LogoutUser extends AuthEvent {
-  const LogoutUser();
-}
-
-class SignUp extends AuthEvent {
-  final UserObj user;
-
-  const SignUp({required this.user});
-
-  @override
-  String toString() => 'Register for user ${user.userName} ';
 }

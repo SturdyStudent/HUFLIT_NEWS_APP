@@ -11,9 +11,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<Login>((event, emit) async {
       try {
         emit(LoggingIn());
-        UserObj.login(event.user);
+        User.login(event.user);
 
-        if (UserObj.isLogin == true) {
+        if (User.isLogin == true) {
           emit(LogInSuccess(user: event.user));
         } else {
           emit(LogInFail());
@@ -23,32 +23,5 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         emit(LogInFail());
       }
     });
-
-    on<LogoutUser>(((event, emit) {
-      try {
-        UserObj.logout();
-        if (UserObj.isLogin == false) {
-          emit(LogOut());
-        }
-      } catch (err) {
-        log("Error", error: err);
-      }
-    }));
-
-    on<SignUp>(
-      (event, emit) {
-        try {
-          emit(RegisteringIn());
-          UserObj.register(event.user);
-          if (UserObj.isRegister) {
-            emit(RegisterSuccess());
-          } else {
-            emit(RegisterFail());
-          }
-        } catch (err) {
-          log("Error", error: err);
-        }
-      },
-    );
   }
 }
