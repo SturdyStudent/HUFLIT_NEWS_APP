@@ -192,7 +192,6 @@ Widget _headerNews(Article? article) {
               const Positioned(
                   top: 0,
                   right: -7,
-                  child: Image(
                     width: 50,
                     height: 55,
                     image: AssetImage('assets/images/icons/bookmark_plus.png'),

@@ -83,4 +83,3 @@ class SavedPageState extends State<SavedPage> {
       );
     }
   }
-}
