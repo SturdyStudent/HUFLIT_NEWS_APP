@@ -12,7 +12,7 @@ class NewsApiProvider {
 
   Future<List<Article>?> fetchNewsList({String category = ''}) async {
     var url =
-        "https://newsapi.org/v2/top-headlines?q=apple&from=2023-03-06&to=2023-03-06&sortBy=popularity&apiKey=b5f249db1f8547168a283f8a1108f927";
+        "https://newsapi.org/v2/top-headlines?q=apple&from=2023-05-06&to=2023-05-06&sortBy=popularity&apiKey=b5f249db1f8547168a283f8a1108f927";
     final response = await client.get(Uri.parse(url));
 
     if (response.statusCode == 200) {

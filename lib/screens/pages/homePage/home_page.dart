@@ -8,6 +8,7 @@ import 'package:news_app/widgets/thumbnail/custom_image.dart';
 import '../../../models/article.dart';
 import '../newsDetail/bloc/bloc.dart';
 import 'bloc/bloc.dart';
+import 'bookmark/BookmarkNews.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -67,7 +68,7 @@ Widget _body(
                   style: AppTextStyle.h5.copyWith(color: Colors.black),
                 ),
                 const SizedBox(height: 15),
-                _headerNews(list?.first),
+                _headerNews(list.first),
                 const SizedBox(
                   height: 27,
                 ),
@@ -87,7 +88,7 @@ Widget gridNews(List<Article> articles) {
   return GridView.count(
     physics: const ScrollPhysics(),
     crossAxisCount: 2,
-    crossAxisSpacing: 10.0,
+    crossAxisSpacing: 1.0,
     mainAxisSpacing: 1.0,
     shrinkWrap: true,
     children: articles.map(
@@ -121,15 +122,13 @@ Widget newsItem(Article article) {
             color: Colors.white,
           ),
         ),
-        const Positioned(
-            top: -5,
-            right: -7,
-            child: Image(
-              width: 40,
-              height: 45,
-              image: AssetImage('assets/images/icons/bookmark_plus.png'),
-              fit: BoxFit.fill,
-            )),
+        Positioned(
+          top: -13,
+          right: -15,
+          width: 55,
+          height: 50,
+          child: BookmarkNews(article: article),
+        ),
       ]),
       Text(
         article.title ?? '',
@@ -141,7 +140,7 @@ Widget newsItem(Article article) {
   );
 }
 
-Widget _headerNews(Article? article) {
+Widget _headerNews(Article article) {
   return Builder(
     builder: (context) {
       return InkWell(
@@ -189,13 +188,13 @@ Widget _headerNews(Article? article) {
                   ],
                 ),
               ),
-              const Positioned(
+              Positioned(
                   top: 0,
                   right: -7,
-                    width: 50,
-                    height: 55,
-                    image: AssetImage('assets/images/icons/bookmark_plus.png'),
-                    fit: BoxFit.fill,
+                  width: 50,
+                  height: 55,
+                  child: BookmarkNews(
+                    article: article,
                   )),
             ],
           ));

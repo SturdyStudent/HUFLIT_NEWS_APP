@@ -25,7 +25,7 @@ class Article {
   String toRawJson() => json.encode(toJson());
 
   factory Article.fromJson(Map<String, dynamic> json) => Article(
-        source: json["source"] == null ? null : Source.fromJson(json["source"]),
+        source: Source.fromJson(json["source"]),
         author: json["author"],
         title: json["title"],
         description: json["description"],
@@ -64,8 +64,8 @@ class Article {
 }
 
 class Source {
-  String id;
-  String name;
+  String? id;
+  String? name;
 
   Source({
     required this.id,
@@ -81,4 +81,61 @@ class Source {
         "id": id,
         "name": name,
       };
+}
+
+class Save {
+  String? author;
+  String? title;
+  String? description;
+  String? url;
+  String? urlToImage;
+  DateTime? publishedAt;
+  String? content;
+
+  Save({
+    this.author,
+    this.title,
+    this.description,
+    this.url,
+    this.urlToImage,
+    this.publishedAt,
+    this.content,
+  });
+
+  String toRawJson() => json.encode(toJson());
+
+  factory Save.fromJson(Map<String, dynamic> json) => Save(
+        author: json["author"],
+        title: json["title"],
+        description: json["description"],
+        url: json["url"],
+        urlToImage: json["urlToImage"],
+        publishedAt: json["publishedAt"] == null
+            ? null
+            : DateTime.parse(json["publishedAt"]),
+        content: json["content"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "author": author,
+        "title": title,
+        "description": description,
+        "url": url,
+        "urlToImage": urlToImage,
+        "publishedAt":
+            // ignore: prefer_null_aware_operators
+            publishedAt == null ? null : publishedAt?.toIso8601String(),
+        "content": content,
+      };
+  String getTime() {
+    var formatter = DateFormat('dd MMMM yyyy h:m');
+    String formatted = formatter.format(publishedAt!);
+    return formatted;
+  }
+
+  String getDateOnly() {
+    var formatter = DateFormat('dd MMMM yyyy');
+    String formatted = formatter.format(publishedAt!);
+    return formatted;
+  }
 }
